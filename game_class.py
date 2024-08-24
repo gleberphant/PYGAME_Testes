@@ -31,6 +31,7 @@ class Game:
 
     # método para lidar com o controle de eventos do jogo
     def handle_event(self):
+        # verifica quais eventos ocorreram
         for event in pygame.event.get():
             match event.type:
                 case pygame.QUIT:
@@ -40,26 +41,28 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         self.game_state = False
                         return False
+
+        # verifica quais teclas estão pressionadas
         teclas_pressionadas = pygame.key.get_pressed()
 
-        if teclas_pressionadas[pygame.K_UP] | teclas_pressionadas[pygame.K_w]:
+        if teclas_pressionadas[pygame.K_UP] | teclas_pressionadas[pygame.K_w] and not self.jogador['movimento']:
             self.jogador['movimento'] = True
             self.jogador['direcao']['PARADO'] = False
             self.jogador['direcao']['CIMA'] = True
 
-        if teclas_pressionadas[pygame.K_DOWN] | teclas_pressionadas[pygame.K_s]:
+        if teclas_pressionadas[pygame.K_DOWN] | teclas_pressionadas[pygame.K_s] and not self.jogador['movimento']:
 
             self.jogador['movimento'] = True
             self.jogador['direcao']['PARADO'] = False
             self.jogador['direcao']['BAIXO'] = True
 
-        if teclas_pressionadas[pygame.K_LEFT] | teclas_pressionadas[pygame.K_a]:
+        if teclas_pressionadas[pygame.K_LEFT] | teclas_pressionadas[pygame.K_a] and not self.jogador['movimento']:
 
             self.jogador['movimento'] = True
             self.jogador['direcao']['PARADO'] = False
             self.jogador['direcao']['ESQUERDA'] = True
 
-        if teclas_pressionadas[pygame.K_RIGHT] | teclas_pressionadas[pygame.K_d]:
+        if teclas_pressionadas[pygame.K_RIGHT] | teclas_pressionadas[pygame.K_d] and not self.jogador['movimento']:
 
             self.jogador['movimento'] = True
             self.jogador['direcao']['PARADO'] = False
